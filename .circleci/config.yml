@@ -139,6 +139,7 @@ jobs:
         name: Wait for rollouts
         command: |
           kubectl rollout status deployment/adminer --watch
+          kubectl rollout status deployment/elasticsearch --watch
           kubectl rollout status deployment/postgres --watch
           kubectl rollout status deployment/redis --watch
           kubectl rollout status deployment/redis-admin --watch
