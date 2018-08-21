@@ -70,6 +70,7 @@ jobs:
         command: |
           yq write --inplace deployments/webserver.yml spec.template.spec.volumes[0].hostPath.path /workspace/shopsys/$CIRCLE_BRANCH/source
           yq write --inplace deployments/postgres.yml spec.template.spec.volumes[0].hostPath.path /workspace/shopsys/$CIRCLE_BRANCH/db
+          yq write --inplace deployments/elasticsearch.yml spec.template.spec.volumes[0].hostPath.path /workspace/shopsys/$CIRCLE_BRANCH/elastic-data
         working_directory: project-base/k8s
 
     - run:
@@ -125,6 +126,7 @@ jobs:
           ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN tar -zxvf /workspace/shopsys/$CIRCLE_BRANCH/source.tar.gz -C /workspace/shopsys/$CIRCLE_BRANCH/
           ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN rm /workspace/shopsys/$CIRCLE_BRANCH/source.tar.gz
           ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN mkdir -p /workspace/shopsys/$CIRCLE_BRANCH/db
+          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN mkdir -p /workspace/shopsys/$CIRCLE_BRANCH/elastic-data
 
     - run:
         name: Deploy application to Kubernetes cluster
