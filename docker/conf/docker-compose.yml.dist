@@ -45,7 +45,7 @@ services:
 
     microservice-product-search:
         build:
-            context: microservices/product-search/docker
+            context: microservices/product-search
             args:
                 <<: *permission_settings
         container_name: shopsys-framework-microservice-product-search
