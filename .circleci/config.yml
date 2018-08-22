@@ -119,14 +119,14 @@ jobs:
         name: Upload repository into cluster, create volumes and set correct permissions
         command: |
           cd .. && tar -zcvf source.tar.gz source
-          ssh -o "StrictHostKeyChecking no" -i ~/cluster_cert $CLUSTER_SSH_LOGIN mkdir -p /workspace/shopsys/$CIRCLE_BRANCH
-          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN sudo chown -R www-data:www-data /workspace/shopsys/$CIRCLE_BRANCH
-          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN rm -rf /workspace/shopsys/$CIRCLE_BRANCH/*
-          scp -i ~/cluster_cert source.tar.gz $CLUSTER_SSH_LOGIN:/workspace/shopsys/$CIRCLE_BRANCH
-          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN tar -zxvf /workspace/shopsys/$CIRCLE_BRANCH/source.tar.gz -C /workspace/shopsys/$CIRCLE_BRANCH/
-          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN rm /workspace/shopsys/$CIRCLE_BRANCH/source.tar.gz
-          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN mkdir -p /workspace/shopsys/$CIRCLE_BRANCH/db
-          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN mkdir -p /workspace/shopsys/$CIRCLE_BRANCH/elastic-data
+          ssh -o "StrictHostKeyChecking no" -i ~/cluster_cert $CLUSTER_SSH_LOGIN "mkdir -p /workspace/shopsys/${CIRCLE_BRANCH} && exit"
+          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN "sudo chown -R www-data:www-data /workspace/shopsys/${CIRCLE_BRANCH}"
+          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN "rm -rf /workspace/shopsys/${CIRCLE_BRANCH}/* && exit"
+          scp -i ~/cluster_cert source.tar.gz $CLUSTER_SSH_LOGIN:/workspace/shopsys/${CIRCLE_BRANCH}
+          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN "tar -zxvf /workspace/shopsys/${CIRCLE_BRANCH}/source.tar.gz -C /workspace/shopsys/${CIRCLE_BRANCH}/ && exit"
+          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN "rm /workspace/shopsys/${CIRCLE_BRANCH}/source.tar.gz && exit"
+          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN "mkdir -p /workspace/shopsys/${CIRCLE_BRANCH}/db && exit"
+          ssh -i ~/cluster_cert $CLUSTER_SSH_LOGIN "mkdir -p /workspace/shopsys/${CIRCLE_BRANCH}/elastic-data && exit"
 
     - run:
         name: Deploy application to Kubernetes cluster
