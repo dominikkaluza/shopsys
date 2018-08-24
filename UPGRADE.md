@@ -17,6 +17,10 @@ There is a list of all the repositories maintained by monorepo, changes in log b
 * [shopsys/microservice-product-search]
 
 ## [From 7.0.0-alpha5 to Unreleased]
+### [shopsys/project-base]
+- added [Microservice Product Search Export](https://github.com/shopsys/microservice-product-search-export)
+    - check changes in the `docker-compose.yml` template you used and replicate them, there is a new container `microservice-product-search-export`
+    - `parameters.yml.dist` contains new parameter `microservice_product_search_export_url`
 
 ## [From 7.0.0-alpha4 to 7.0.0-alpha5]
 

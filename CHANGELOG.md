@@ -24,6 +24,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### [shopsys/shopsys]
+#### Added
+- [#429 - Microservice Product Search Export](https://github.com/shopsys/shopsys/pull/429)
+    - added [Microservice Product Search Export](https://github.com/shopsys/microservice-product-search-export), microservice is used for feeding Elasticsearch by products
+
+### [shopsys/framework]
+#### Changed
+- [#429 - Microservice Product Search Export](https://github.com/shopsys/shopsys/pull/429)
+    - framework doesn't use Elasticsearch directly anymore
+    - feeds Elasticsearch via Product Search Export microservice
+
 ### [shopsys/coding-standards]
 #### Added
 - [#384 - cs: keep class spacing consistent](https://github.com/shopsys/shopsys/pull/384) [@TomasVotruba]
